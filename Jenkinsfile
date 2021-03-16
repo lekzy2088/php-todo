@@ -81,17 +81,7 @@
             }
   
         }
-        stage('publish build info'){
-          steps{
-            script{
-              def buildInfo1 = server.upload uploadSpec
-              server.publishBuildInfo buildInfo1
-            }
-          }
-
-        }
-          
-        
+           
    }
 
 }
