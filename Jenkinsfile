@@ -81,16 +81,7 @@
             }
   
         }
-        stage('publish build info'){
-          steps{
-            script{
-              def buildInfo1 = server.download downloadSpec
-              def buildInfo2 = server.upload uploadSpec
-              buildInfo1.append buildInfo2
-              server.publishBuildInfo buildInfo1
-            }
-          }
-        }
+
         stage ('Deploy to Dev Environment') {
           steps {
               build job: 'project-14/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
