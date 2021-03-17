@@ -83,12 +83,15 @@
         }
         stage('publish build number'){
           steps{
-
+              def buildInfo = Artifactory.newBuildInfo()
+              server.download spec: downloadSpec, buildInfo: buildInfo
+              server.upload spec: uploadSpec, buildInfo: buildInfo
+              server.publishBuildInfo buildInfo 
           }
         }
         stage ('Deploy to Dev Environment') {
           steps {
-          build job: 'project-14/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
+              build job: 'project-14/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
     }
   }
            
