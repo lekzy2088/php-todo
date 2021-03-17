@@ -85,7 +85,7 @@
           steps{
             script{
 
-                def buildInfo = Artifactory.newBuildInfo()
+                def buildInfo = Artifactory.newBuildInfo() 'jfrog'
                 server.download spec: downloadSpec, buildInfo: buildInfo
                 server.upload spec: uploadSpec, buildInfo: buildInfo
                 server.publishBuildInfo buildInfo 
