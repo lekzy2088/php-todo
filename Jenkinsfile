@@ -83,10 +83,14 @@
         }
         stage('publish build number'){
           steps{
-              def buildInfo = Artifactory.newBuildInfo()
-              server.download spec: downloadSpec, buildInfo: buildInfo
-              server.upload spec: uploadSpec, buildInfo: buildInfo
-              server.publishBuildInfo buildInfo 
+            script{
+
+                def buildInfo = Artifactory.newBuildInfo()
+                server.download spec: downloadSpec, buildInfo: buildInfo
+                server.upload spec: uploadSpec, buildInfo: buildInfo
+                server.publishBuildInfo buildInfo 
+
+            }
           }
         }
         stage ('Deploy to Dev Environment') {
