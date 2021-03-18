@@ -35,7 +35,7 @@
 
       stage('Code Analysis') {
         steps {
-            sh 'phploc app/ --log-csv build/logs/phploc.csv'
+            sh 'php phploc.phar app/ --log-csv build/logs/phploc.csv'
           }
         } 
       stage('Plot Code Coverage Report') {
